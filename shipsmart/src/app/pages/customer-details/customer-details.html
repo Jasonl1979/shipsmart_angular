@@ -1,0 +1,61 @@
+<div class="page-container">
+  <div class="page-header">
+    <a class="back-link" routerLink="/customers">Back to customers</a>
+    <div class="header-row">
+      <div>
+        <h1>{{ displayName }}</h1>
+        <p class="subtitle">Customer details and communications</p>
+      </div>
+      <span class="status-pill" *ngIf="fallbackCustomer">
+        {{ fallbackCustomer.status }}
+      </span>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <section class="card" *ngIf="isLoading">
+      <p>Loading customer details...</p>
+    </section>
+
+    <section class="card" *ngIf="error && !isLoading">
+      <p class="error">{{ error }}</p>
+    </section>
+
+    <section class="card" *ngIf="!isLoading">
+      <h2>Profile</h2>
+      <div class="detail-row">
+        <span class="label">Email</span>
+        <span>{{ fallbackCustomer?.email || '-' }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Phone</span>
+        <span>{{ fallbackCustomer?.phone || '-' }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Address</span>
+        <span>{{ fallbackCustomer?.address || '-' }}</span>
+      </div>
+    </section>
+
+    <section class="card span-2" *ngIf="!isLoading">
+      <div class="section-header">
+        <h2>Email Communications</h2>
+        <span class="meta">Newest to oldest</span>
+      </div>
+      <div class="email-scroll" style="--rows-to-show: 5">
+        <div class="email-item" *ngFor="let email of emails">
+          <div class="email-row">
+            <input class="input" type="text" [(ngModel)]="email.subject" />
+            <input class="input" type="date" [(ngModel)]="email.date" />
+          </div>
+          <textarea class="textarea" rows="2" [(ngModel)]="email.body"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="card span-full" *ngIf="!isLoading">
+      <h2>Notes</h2>
+      <textarea class="textarea" rows="5" [(ngModel)]="notes" placeholder="Add notes about this customer..."></textarea>
+    </section>
+  </div>
+</div>

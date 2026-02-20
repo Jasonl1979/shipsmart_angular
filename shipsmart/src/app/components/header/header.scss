@@ -1,0 +1,123 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 20px;
+
+  .logo-icon {
+    font-size: 24px;
+  }
+
+  .logo-text {
+    color: var(--text-primary);
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-button {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  position: relative;
+
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  margin-top: 5px;
+
+  .menu-header {
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+  }
+
+  .menu-item {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s;
+    color: var(--text-primary);
+    font-family: inherit;
+
+    &:hover:not(.disabled) {
+      background-color: var(--bg-hover);
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &:first-of-type {
+      border-radius: 8px 8px 0 0;
+    }
+  }
+
+  hr {
+    margin: 5px 0;
+    border: none;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .user-info {
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      color: var(--text-primary);
+    }
+
+    small {
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-wrap: wrap;
+  }
+}

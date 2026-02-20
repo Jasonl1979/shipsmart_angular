@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://10.0.0.102:32770",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

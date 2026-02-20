@@ -1,0 +1,28 @@
+<div class="widget" [style.--rows-to-show]="rowsToShow">
+  <div class="widget-header">
+    <h3>👥 Customers</h3>
+  </div>
+  <div class="widget-content">
+    <div class="table-scroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customerService.customers()">
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.email }}</td>
+            <td class="status" [class.active]="customer.status === 'Active'">{{ customer.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="widget-footer">
+    <small>Dummy data - Future: JSON API integration</small>
+  </div>
+</div>

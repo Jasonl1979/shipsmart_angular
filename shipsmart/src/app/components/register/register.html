@@ -1,0 +1,27 @@
+<div class="register-container">
+  <div class="register-form-wrapper">
+    <h2>Create Account</h2>
+    <p class="subtitle">Join ShipSmart and start managing shipments</p>
+    
+    <form (ngSubmit)="register()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" [(ngModel)]="formData.username" name="username" placeholder="Choose username" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="formData.email" name="email" placeholder="Enter email" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="formData.password" name="password" placeholder="Create password" />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" [(ngModel)]="formData.confirmPassword" name="confirmPassword" placeholder="Confirm password" />
+      </div>
+      <button type="submit" class="btn-primary">Create Account</button>
+      <p class="note">*Future: Will connect to PostgreSQL database*</p>
+    </form>
+  </div>
+</div>

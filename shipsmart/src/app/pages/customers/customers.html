@@ -1,0 +1,43 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Customers</h1>
+    <p class="subtitle">Manage and view all customers</p>
+  </div>
+
+  <div class="content-section">
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customerService.customers()">
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>{{ customer.address }}</td>
+            <td>
+              <span class="status-badge" [class.active]="customer.status === 'Active'">
+                {{ customer.status }}
+              </span>
+            </td>
+            <td>
+              <a class="details-button" [routerLink]="['/customers', customer.id]">Details</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-disclaimer">
+      <p><em>Note: This is a placeholder with dummy data. Real data will integrate with PostgreSQL.</em></p>
+    </div>
+  </div>
+</div>

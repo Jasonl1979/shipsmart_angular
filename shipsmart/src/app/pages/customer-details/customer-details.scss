@@ -1,0 +1,153 @@
+.page-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+
+  .back-link {
+    display: inline-flex;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--text-primary);
+  }
+
+  .subtitle {
+    margin: 0.25rem 0 0;
+    color: var(--text-secondary);
+  }
+}
+
+.status-pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--status-success);
+  color: #fff;
+  font-weight: 600;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+
+  h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+}
+
+.card.span-2 {
+  grid-column: span 2;
+}
+
+.card.span-full {
+  grid-column: 1 / -1;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+
+  .meta {
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+  }
+}
+
+.email-scroll {
+  margin-top: 1rem;
+  max-height: calc(var(--rows-to-show, 5) * 96px);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.email-item {
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: var(--bg-primary);
+}
+
+.email-row {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.error {
+  color: var(--status-danger);
+}
+
+@media (max-width: 900px) {
+  .card.span-2 {
+    grid-column: span 1;
+  }
+
+  .email-row {
+    grid-template-columns: 1fr;
+  }
+}

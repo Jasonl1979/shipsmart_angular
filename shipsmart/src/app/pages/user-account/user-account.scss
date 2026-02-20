@@ -1,0 +1,62 @@
+.user-account-container {
+  max-width: 800px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 30px;
+  border: 1px solid var(--border-color);
+
+  h2 {
+    margin-top: 0;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+  }
+}
+
+.account-section {
+  margin: 25px 0;
+
+  h3 {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin: 0 0 15px 0;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--bg-primary);
+    padding: 15px;
+    border-radius: 6px;
+  }
+}
+
+.info-item {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 16px;
+  }
+}
+
+.note {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-style: italic;
+  margin: 10px 0 0 0;
+}

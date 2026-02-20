@@ -1,0 +1,30 @@
+<div class="widget" [style.--rows-to-show]="rowsToShow">
+  <div class="widget-header">
+    <h3>📦 Orders</h3>
+  </div>
+  <div class="widget-content">
+    <div class="table-scroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of dataService.orders()">
+            <td>{{ order.orderNumber }}</td>
+            <td>{{ order.customerName }}</td>
+            <td class="status">{{ order.status }}</td>
+            <td>${{ order.total }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="widget-footer">
+    <small>Dummy data - Future: JSON API integration</small>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+
+  &.hide-layout {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  
+  // Security: Disable pointer events when layout is hidden
+  .app-container.hide-layout & {
+    pointer-events: none;
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: var(--bg-secondary);
+}
+
+.auth-outlet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 20px;
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+  .main-content-wrapper {
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1;
+  }
+}

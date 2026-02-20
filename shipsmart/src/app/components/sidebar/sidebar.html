@@ -1,0 +1,14 @@
+<nav class="sidebar" [class.collapsed]="!isOpen()">
+  <ul class="menu">
+    <li class="menu-section-title">Main</li>
+    <li *ngFor="let item of menuItems">
+      <a [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="menu-item">
+        <span class="icon">{{ item.icon }}</span>
+        <span class="label" *ngIf="isOpen()">{{ item.label }}</span>
+      </a>
+    </li>
+  </ul>
+  <div class="sidebar-footer" *ngIf="isOpen()">
+    <small>Version 1.0.0</small>
+  </div>
+</nav>

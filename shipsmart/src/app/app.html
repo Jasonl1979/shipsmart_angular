@@ -1,0 +1,20 @@
+<div class="app-container" [class.hide-layout]="!showLayout()">
+  <app-header
+    *ngIf="showLayout()"
+    [sidebarOpen]="sidebarOpen()">
+  </app-header>
+
+  <div class="main-content-wrapper" *ngIf="showLayout()">
+    <app-sidebar [isOpen]="sidebarOpen()"></app-sidebar>
+
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <div class="auth-outlet" *ngIf="!showLayout()">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-footer *ngIf="showLayout()"></app-footer>
+</div>

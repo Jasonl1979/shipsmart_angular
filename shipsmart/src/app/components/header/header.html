@@ -1,0 +1,38 @@
+<header class="app-header">
+  <div class="header-left">
+    <div class="logo-section">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">ShipSmart</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <!-- Settings Button -->
+    <div class="icon-button" (click)="toggleSettingsMenu()" title="Settings">
+      ⚙️
+      <div class="dropdown-menu" *ngIf="showSettingsMenu">
+        <div class="menu-header">Theme Settings</div>
+        <button class="menu-item" (click)="setTheme('light')">☀️ Light Mode</button>
+        <button class="menu-item" (click)="setTheme('dark')">🌙 Dark Mode</button>
+        <button class="menu-item" (click)="setTheme('system')">💻 System Default</button>
+        <hr />
+        <div class="menu-header">Other Settings</div>
+        <button class="menu-item disabled">🔔 Notifications (Future)</button>
+      </div>
+    </div>
+
+    <!-- User Profile Button -->
+    <div class="icon-button" (click)="toggleUserMenu()" title="User Account">
+      👤
+      <div class="dropdown-menu" *ngIf="showUserMenu">
+        <div class="user-info">
+          <strong>{{ authService.currentUser()?.username }}</strong>
+          <small>{{ authService.currentUser()?.email }}</small>
+        </div>
+        <hr />
+        <a href="/user-account" class="menu-item">👤 Account Settings</a>
+        <button class="menu-item" (click)="logout()">🚪 Logout</button>
+      </div>
+    </div>
+  </div>
+</header>

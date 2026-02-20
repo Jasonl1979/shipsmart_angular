@@ -1,0 +1,38 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Products</h1>
+    <p class="subtitle">Browse and manage all products</p>
+  </div>
+
+  <div class="content-section">
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of dataService.products()">
+            <td>{{ product.sku }}</td>
+            <td>{{ product.category }}</td>
+            <td>${{ product.price }}</td>
+            <td>
+              <span class="stock-indicator" [class.low]="product.stock < 10" 
+                    [class.in-stock]="product.stock >= 10">
+                {{ product.stock }} units
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-disclaimer">
+      <p><em>Note: This is a placeholder with dummy data. Real data will integrate with PostgreSQL.</em></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Orders</h1>
+    <p class="subtitle">Track and manage all orders</p>
+  </div>
+
+  <div class="content-section">
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Order Number</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of dataService.orders()">
+            <td>{{ order.orderNumber }}</td>
+            <td>{{ order.customerName }}</td>
+            <td>{{ order.date }}</td>
+            <td>
+              <span class="status-badge" [class.pending]="order.status === 'Pending'" 
+                    [class.shipped]="order.status === 'Shipped'" 
+                    [class.processing]="order.status === 'Processing'"
+                    [class.delivered]="order.status === 'Delivered'">
+                {{ order.status }}
+              </span>
+            </td>
+            <td>${{ order.total }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-disclaimer">
+      <p><em>Note: This is a placeholder with dummy data. Real data will integrate with PostgreSQL.</em></p>
+    </div>
+  </div>
+</div>

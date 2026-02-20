@@ -1,0 +1,137 @@
+/* Global Styles & Theme Variables */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root element - Light mode default */
+:root {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f0f0f0;
+  --bg-hover: #f5f5f5;
+  --bg-info: #e3f2fd;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-tertiary: #888888;
+  --border-color: #e0e0e0;
+  --border-info: #2196f3;
+  --header-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --status-success: #4caf50;
+  --status-warning: #ff9800;
+  --status-error: #f44336;
+  --status-info: #2196f3;
+  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+/* Dark mode */
+:root.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #242424;
+  --bg-tertiary: #333333;
+  --bg-hover: #333333;
+  --bg-info: #1e3a5f;
+  --text-primary: #ffffff;
+  --text-secondary: #aaaaaa;
+  --text-tertiary: #999999;
+  --border-color: #444444;
+  --border-info: #64b5f6;
+  --header-bg: #1f1f1f;
+  --sidebar-bg: #242424;
+  --status-success: #66bb6a;
+  --status-warning: #ffb74d;
+  --status-error: #ef5350;
+  --status-info: #64b5f6;
+}
+
+/* Light mode explicit */
+:root.light-mode {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f0f0f0;
+  --bg-hover: #f5f5f5;
+  --bg-info: #e3f2fd;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-tertiary: #888888;
+  --border-color: #e0e0e0;
+  --border-info: #2196f3;
+  --header-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --status-success: #4caf50;
+  --status-warning: #ff9800;
+  --status-error: #f44336;
+  --status-info: #2196f3;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Input and form elements */
+input, textarea, select {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-family: inherit;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--status-info);
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* Links */
+a {
+  color: var(--status-info);
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+  
+  &:hover {
+    background: var(--text-secondary);
+  }
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: var(--border-color) var(--bg-secondary);
+  scrollbar-width: thin;
+}

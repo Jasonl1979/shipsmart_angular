@@ -1,0 +1,29 @@
+<div class="user-account-container">
+  <h2>Account Settings</h2>
+  
+  <div class="account-section">
+    <h3>User Information</h3>
+    <div class="info-item">
+      <label>Username</label>
+      <p>{{ authService.currentUser()?.username }}</p>
+    </div>
+    <div class="info-item">
+      <label>Email</label>
+      <p>{{ authService.currentUser()?.email }}</p>
+    </div>
+    <div class="info-item">
+      <label>Role</label>
+      <p>{{ authService.currentUser()?.role || 'User' }}</p>
+    </div>
+  </div>
+
+  <div class="account-section disabled">
+    <h3>Change Password</h3>
+    <p class="note">Coming soon - PostgreSQL integration required</p>
+  </div>
+
+  <div class="account-section disabled">
+    <h3>Account Preferences</h3>
+    <p class="note">Coming soon - PostgreSQL integration required</p>
+  </div>
+</div>
