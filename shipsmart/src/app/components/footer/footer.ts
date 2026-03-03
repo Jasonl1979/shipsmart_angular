@@ -9,6 +9,4 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
-
-  disclaimer = 'ShipSmart is currently in development. Some features will be available after PostgreSQL integration.';
 }

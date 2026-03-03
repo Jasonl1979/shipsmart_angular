@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "start: shipsmart",
+      "type": "npm",
+      "script": "start",
+      "path": "shipsmart",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "^"
+          },
+          "endsPattern": {
+            "regexp": "Application bundle generation complete|Watch mode enabled"
+          }
+        }
+      }
+    }
+  ]
+}

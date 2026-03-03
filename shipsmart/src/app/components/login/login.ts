@@ -22,7 +22,7 @@ export class Login {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login(): void {
+  async login(): Promise<void> {
     this.error.set('');
     const username = this.usernameInput.nativeElement.value;
     const password = this.passwordInput.nativeElement.value;
@@ -32,16 +32,15 @@ export class Login {
       return;
     }
 
-    this.isLoading.set(true);
-    setTimeout(() => {
-      const success = this.authService.login(username, password);
-      this.isLoading.set(false);
-      if (success) {
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.error.set('Invalid username or password. Try Admin/admin');
-      }
-    }, 500);
+    //this.isLoading.set(true);
+    const success = await this.authService.login(username, password);
+    //this.isLoading.set(false);
+
+    if (success == 'admin') {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.error.set('Invalid username or password.');
+    }
   }
 
   toggleForgotPassword(): void {

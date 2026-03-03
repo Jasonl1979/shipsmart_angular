@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "start: shipsmart",
       "type": "npm",
       "script": "start",
       "isBackground": true,
@@ -12,15 +13,16 @@
         "background": {
           "activeOnStart": true,
           "beginsPattern": {
-            "regexp": "Changes detected"
+            "regexp": "^"
           },
           "endsPattern": {
-            "regexp": "bundle generation (complete|failed)"
+            "regexp": "Application bundle generation complete|Watch mode enabled"
           }
         }
       }
     },
     {
+      "label": "test: shipsmart",
       "type": "npm",
       "script": "test",
       "isBackground": true,

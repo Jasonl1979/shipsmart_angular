@@ -2,6 +2,9 @@ import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface User {
   username: string;
@@ -13,31 +16,70 @@ export interface User {
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly VALID_USERNAME = 'Admin';
-  private readonly VALID_PASSWORD = 'admin';
+  private readonly authApiUrl = environment.authApiUrl;
   private platformId = inject(PLATFORM_ID);
-  
-  isLoggedIn = signal<boolean>(this.checkAuthState());
-  currentUser = signal<User | null>(this.loadUser());
 
-  constructor(private router: Router) {}
+  isLoggedIn = signal<boolean>(false);
+  currentUser = signal<User | null>(null);
+
+  constructor(private router: Router, private http: HttpClient) {
+    this.clearPersistedAuthState();
+  }
 
   private hasLocalStorage(): boolean {
     return isPlatformBrowser(this.platformId);
   }
 
-  login(username: string, password: string): boolean {
-    if (username === this.VALID_USERNAME && password === this.VALID_PASSWORD) {
-      const user: User = { username, email: 'admin@shipsmart.com', role: 'admin' };
+  async login(username: string, password: string): Promise<string> {
+    try {
+      const response = await firstValueFrom(
+        this.http.post(this.authApiUrl, {
+          email: username,
+          password,
+        }, {
+          responseType: 'text',
+        })
+      );
+
+      const role = this.getRoleFromAuthResponse(response);
+      if (!role) {
+        return 'false';
+      }
+      const user: User = {
+        username,
+        email: username,
+        role,
+      };
+
       this.currentUser.set(user);
       this.isLoggedIn.set(true);
       if (this.hasLocalStorage()) {
         localStorage.setItem('authUser', JSON.stringify(user));
         localStorage.setItem('isLoggedIn', 'true');
       }
-      return true;
+
+      return role;
+    } catch {
+      return 'false';
     }
-    return false;
+  }
+
+  private getRoleFromAuthResponse(response: unknown): 'admin' | 'standard' | null {
+    if (response === false || response === null || response === undefined) {
+      return null;
+    }
+
+    if (typeof response === 'string') {
+      const normalized = response.trim().toLowerCase();
+      if (normalized === 'admin' || normalized === 'standard') {
+        return normalized;
+      }
+
+      if (normalized === 'false' || normalized === 'fasle') {
+        return null;
+      }   
+    }
+    return null;
   }
 
   register(username: string, email: string, password: string): boolean {
@@ -48,21 +90,16 @@ export class AuthService {
   logout(): void {
     this.currentUser.set(null);
     this.isLoggedIn.set(false);
-    if (this.hasLocalStorage()) {
-      localStorage.removeItem('authUser');
-      localStorage.removeItem('isLoggedIn');
-    }
+    this.clearPersistedAuthState();
     this.router.navigate(['/login']);
   }
 
-  private checkAuthState(): boolean {
-    if (!this.hasLocalStorage()) return false;
-    return localStorage.getItem('isLoggedIn') === 'true';
-  }
+  private clearPersistedAuthState(): void {
+    if (!this.hasLocalStorage()) {
+      return;
+    }
 
-  private loadUser(): User | null {
-    if (!this.hasLocalStorage()) return null;
-    const userStr = localStorage.getItem('authUser');
-    return userStr ? JSON.parse(userStr) : null;
+    localStorage.removeItem('authUser');
+    localStorage.removeItem('isLoggedIn');
   }
 }

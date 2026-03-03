@@ -1,6 +1,12 @@
 {
-  "/api": {
+  "/api/partner": {
     "target": "http://10.0.0.102:32770",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/api/users": {
+    "target": "http://10.0.0.102:32771",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

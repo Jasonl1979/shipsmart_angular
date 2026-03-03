@@ -3,17 +3,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng serve",
-      "type": "chrome",
+      "name": "ShipSmart: Debug App",
+      "type": "pwa-chrome",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
+      "preLaunchTask": "start: shipsmart",
+      "url": "http://localhost:4200/",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
     },
     {
-      "name": "ng test",
-      "type": "chrome",
+      "name": "ShipSmart: Debug Tests",
+      "type": "pwa-chrome",
       "request": "launch",
-      "preLaunchTask": "npm: test",
+      "preLaunchTask": "test: shipsmart",
       "url": "http://localhost:9876/debug.html"
     }
   ]
