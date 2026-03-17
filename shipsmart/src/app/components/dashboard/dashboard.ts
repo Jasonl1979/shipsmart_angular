@@ -1,15 +1,19 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CustomerWidgetComponent } from '../widgets/customer-widget/customer-widget';
 import { OrdersWidgetComponent } from '../widgets/orders-widget/orders-widget';
 import { ProductsWidgetComponent } from '../widgets/products-widget/products-widget';
+import { AuthService } from '../../services/auth';
+import { FulfilmentRequest, FulfilmentService } from '../../services/fulfilment';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     DragDropModule,
     CustomerWidgetComponent,
     OrdersWidgetComponent,
@@ -22,7 +26,24 @@ export class DashboardComponent {
   title = 'Dashboard';
   editMode = false;
   rowsToShow = 5;
-  widgets: Array<'customers' | 'orders' | 'products'> = ['customers', 'orders', 'products'];
+  widgets: Array<'customers' | 'orders' | 'products' | 'fulfilment'> = ['customers', 'orders', 'products', 'fulfilment'];
+
+  constructor(
+    public authService: AuthService,
+    public fulfilmentService: FulfilmentService
+  ) {}
+
+  get authToken(): string | null {
+    return this.authService.getAuthToken();
+  }
+
+  get userPackage(): string | null {
+    return this.authService.getUserPackage();
+  }
+
+  get showExpiredStandardMessage(): boolean {
+    return this.authService.isAccessRestricted() && !this.authService.isAdminUser();
+  }
 
   @ViewChildren('widgetItem', { read: ElementRef })
   widgetItems!: QueryList<ElementRef<HTMLElement>>;
@@ -38,7 +59,15 @@ export class DashboardComponent {
     }
   }
 
-  drop(event: CdkDragDrop<Array<'customers' | 'orders' | 'products'>>): void {
+  get recentFulfilments(): FulfilmentRequest[] {
+    return this.fulfilmentService.history().slice(0, this.rowsToShow);
+  }
+
+  formatDate(value: string): string {
+    return new Date(value).toLocaleString();
+  }
+
+  drop(event: CdkDragDrop<Array<'customers' | 'orders' | 'products' | 'fulfilment'>>): void {
     if (!this.editMode) {
       return;
     }
@@ -47,7 +76,7 @@ export class DashboardComponent {
     moveItemInArray(this.widgets, event.previousIndex, targetIndex);
   }
 
-  private getDropIndex(event: CdkDragDrop<Array<'customers' | 'orders' | 'products'>>): number {
+  private getDropIndex(event: CdkDragDrop<Array<'customers' | 'orders' | 'products' | 'fulfilment'>>): number {
     const dropPoint = (event as { dropPoint?: { x: number; y: number } }).dropPoint;
     if (!dropPoint) {
       return event.currentIndex;
@@ -75,7 +104,7 @@ export class DashboardComponent {
     return closestIndex;
   }
 
-  trackByWidget(index: number, widget: 'customers' | 'orders' | 'products'): string {
+  trackByWidget(index: number, widget: 'customers' | 'orders' | 'products' | 'fulfilment'): string {
     return widget;
   }
 }

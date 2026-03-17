@@ -1,0 +1,87 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Fulfilment</h1>
+    <p class="subtitle">Manage fulfilment requests and start a guided wizard flow.</p>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+    <button class="primary-btn" (click)="createRequest()">Create New Fulfilment Request</button>
+  </div>
+
+  <div class="content-section">
+    <h2>Request History</h2>
+    <p class="section-note">Status is updated as each page in the wizard is completed.</p>
+
+    <div class="filters-row">
+      <div class="filter-group">
+        <span class="filter-label">Filter by status</span>
+        <div class="status-filter-list">
+          <label class="status-option" *ngFor="let status of statuses">
+            <input
+              type="checkbox"
+              [checked]="isStatusSelected(status)"
+              (change)="toggleStatus(status)"
+            />
+            <span>{{ status }}</span>
+          </label>
+        </div>
+        <button
+          class="link-btn"
+          type="button"
+          (click)="clearStatusFilters()"
+          *ngIf="selectedStatuses.size"
+        >
+          Clear filters
+        </button>
+      </div>
+
+      <div class="filter-group sort-group">
+        <label class="filter-label" for="created-sort">Sort by Created Date</label>
+        <select id="created-sort" [value]="sortDirection" (change)="setSortDirection($any($event.target).value)">
+          <option value="desc">Newest first (desc)</option>
+          <option value="asc">Oldest first (asc)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-container" *ngIf="filteredSortedHistory.length; else emptyState">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Request ID</th>
+            <th>Created</th>
+            <th>Status</th>
+            <th>Draft Emails</th>
+            <th>Sent Emails</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredSortedHistory">
+            <td>{{ item.id }}</td>
+            <td>{{ formatDate(item.createdAt) }}</td>
+            <td>
+              <span class="status-badge">{{ item.status }}</span>
+            </td>
+            <td>{{ countByEmailStatus(item, 'Draft') }}</td>
+            <td>{{ countByEmailStatus(item, 'Sent') }}</td>
+            <td>
+              <a
+                class="link-btn"
+                [attr.href]="'/fulfilment/history/' + item.id"
+                (click)="openHistory($event, item.id)"
+              >
+                Open history
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="empty-state">No fulfilment requests match the selected filters.</div>
+    </ng-template>
+  </div>
+</div>

@@ -56,6 +56,17 @@
       font-weight: 500;
     }
 
+    &.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: auto;
+
+      &:hover {
+        background-color: transparent;
+        color: var(--text-secondary);
+      }
+    }
+
     .icon {
       font-size: 18px;
       min-width: 20px;

@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   woopartnersApiUrl: '/api/partner/woopartners',
-  authApiUrl: '/api/users/get'
+  userApiUrl: '/api/users/get',
+  authApiUrl: '/api/auth/token'
 };

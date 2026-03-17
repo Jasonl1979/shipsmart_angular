@@ -1,6 +1,7 @@
 <div class="app-container" [class.hide-layout]="!showLayout()">
   <app-header
     *ngIf="showLayout()"
+    (toggleSidebar)="toggleSidebar()"
     [sidebarOpen]="sidebarOpen()">
   </app-header>
 

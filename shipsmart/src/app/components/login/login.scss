@@ -7,7 +7,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8fb3ff 0%, #5f8fff 100%);
   padding: 20px;
   overflow-y: auto;
 }
@@ -27,8 +27,20 @@
   margin-bottom: 40px;
 
   .logo {
-    font-size: 60px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 20px;
+
+    .logo-box {
+      font-size: 40px;
+      line-height: 1;
+    }
+
+    .logo-bolt {
+      font-size: 44px;
+      line-height: 1;
+    }
   }
 
   h1 {
@@ -106,7 +118,7 @@
 .btn-primary {
   width: 100%;
   padding: 13px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8fb3ff 0%, #5f8fff 100%);
   color: white;
   border: none;
   border-radius: 6px;
@@ -118,7 +130,7 @@
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 20px rgba(95, 143, 255, 0.35);
   }
 
   &:disabled {

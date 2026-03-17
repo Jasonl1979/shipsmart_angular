@@ -1,0 +1,62 @@
+.edit-company-container {
+  max-width: 800px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 30px;
+  border: 1px solid var(--border-color);
+
+  h2 {
+    margin-top: 0;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+  }
+}
+
+.company-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+
+  label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font: inherit;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+    }
+  }
+}
+
+.save-button {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-weight: 600;
+  background: #1f7a4f;
+  color: white;
+  cursor: pointer;
+}
+
+.status {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}

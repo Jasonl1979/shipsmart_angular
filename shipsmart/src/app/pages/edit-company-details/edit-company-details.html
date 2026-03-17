@@ -1,0 +1,31 @@
+<div class="edit-company-container">
+  <h2>Edit Company Details</h2>
+
+  <form (ngSubmit)="saveCompanyDetails()" class="company-form">
+    <div class="form-group">
+      <label for="company-name">Company Name</label>
+      <input
+        id="company-name"
+        type="text"
+        name="companyName"
+        [(ngModel)]="companyName"
+        placeholder="Enter company name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="company-email">Company Email</label>
+      <input
+        id="company-email"
+        type="email"
+        name="companyEmail"
+        [(ngModel)]="companyEmail"
+        placeholder="Enter company email"
+      />
+    </div>
+
+    <button type="submit" class="save-button">Save Details</button>
+  </form>
+
+  <p class="status" *ngIf="statusMessage">{{ statusMessage }}</p>
+</div>

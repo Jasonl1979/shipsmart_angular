@@ -1,0 +1,26 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Invoice generation</h1>
+    <p>Select how invoices should be produced for this fulfilment request.</p>
+  </div>
+
+  <div class="content-section">
+    <label>
+      <input type="radio" name="invoiceMethod" [(ngModel)]="invoiceMethod" value="Infinite invoices" />
+      Generate Infinite invoices
+    </label>
+    <label>
+      <input type="radio" name="invoiceMethod" [(ngModel)]="invoiceMethod" value="Excel upload template" />
+      Invoice upload excel template (template from settings later)
+    </label>
+    <label>
+      <input type="radio" name="invoiceMethod" [(ngModel)]="invoiceMethod" value="Accounting API" />
+      Call accounting system API (API URL from settings later)
+    </label>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+    <button class="primary-btn" (click)="next()">Next</button>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>{{ viewMode ? 'Email' : 'Create New Email' }}</h1>
+  </div>
+
+  <!-- View existing email -->
+  <section class="card" *ngIf="viewMode && viewEmail">
+    <div class="view-field"><span class="view-label">From / Supplier</span><span>{{ viewEmail.supplier }}</span></div>
+    <div class="view-field"><span class="view-label">Subject</span><span>{{ viewEmail.subject }}</span></div>
+    <div class="view-field"><span class="view-label">Status</span><span>{{ viewEmail.status }}</span></div>
+    <div class="view-field view-body"><span class="view-label">Body</span><p>{{ viewEmail.body }}</p></div>
+    <div class="action-row">
+      <button class="secondary-btn" (click)="backToParent()">Back</button>
+      <button class="secondary-btn" (click)="reply()">Reply</button>
+      <button class="secondary-btn" (click)="forward()">Forward</button>
+      <button class="primary-btn" *ngIf="canSendViewedEmail()" (click)="sendViewedEmail()">Send</button>
+    </div>
+  </section>
+
+  <!-- Compose new email -->
+  <section class="card" *ngIf="!viewMode">
+    <label for="supplier">Supplier / Contact</label>
+    <input id="supplier" type="text" [(ngModel)]="supplier" />
+
+    <label for="subject">Subject</label>
+    <input id="subject" type="text" [(ngModel)]="subject" />
+
+    <label for="body">Email body</label>
+    <textarea id="body" rows="10" [(ngModel)]="body"></textarea>
+
+    <p class="message" [class.error]="hasError" *ngIf="message">{{ message }}</p>
+
+    <div class="action-row">
+      <button class="secondary-btn" (click)="backToParent()">Close email composer</button>
+      <button class="secondary-btn" (click)="saveDraft()">Save draft</button>
+      <button class="primary-btn" (click)="sendEmail()">Send</button>
+    </div>
+  </section>
+</div>

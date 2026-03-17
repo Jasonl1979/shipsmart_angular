@@ -1,0 +1,11 @@
+@ss_auth_HostAddress = http://localhost:5256
+
+POST {{ss_auth_HostAddress}}/api/auth/token
+Content-Type: application/json
+Accept: application/json
+{
+  "username":"admin",
+  "password":"admin"
+}
+
+###

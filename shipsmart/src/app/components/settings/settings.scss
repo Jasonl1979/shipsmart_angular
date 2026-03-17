@@ -53,6 +53,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, background-color 0.2s;
 
   span {
     color: var(--text-primary);
@@ -67,5 +70,17 @@
   &.disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  &.link-item:hover {
+    border-color: var(--border-color);
+    background: var(--bg-hover);
+  }
+
+  &.button-item {
+    width: 100%;
+    border: 1px solid transparent;
+    font: inherit;
+    cursor: pointer;
   }
 }

@@ -1,0 +1,26 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Waybill generation</h1>
+    <p>Create one or more waybills via courier integration (API details from settings later).</p>
+  </div>
+
+  <div class="content-section">
+    <div class="field-group">
+      <label for="waybillCount">Number of waybills</label>
+      <input id="waybillCount" type="number" min="1" [(ngModel)]="waybillCount" />
+    </div>
+
+    <div class="field-group">
+      <label for="courier">Courier integration mode</label>
+      <select id="courier" [(ngModel)]="courierIntegration">
+        <option value="Use configured courier API">Use configured courier API</option>
+        <option value="Manual for now">Manual for now</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+    <button class="primary-btn" (click)="next()">Next</button>
+  </div>
+</div>

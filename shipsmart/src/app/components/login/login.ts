@@ -33,13 +33,18 @@ export class Login {
     }
 
     //this.isLoading.set(true);
-    const success = await this.authService.login(username, password);
+    const authResponse = await this.authService.login(username, password);
     //this.isLoading.set(false);
 
-    if (success == 'admin') {
+    const token = authResponse?.token ?? authResponse?.result;
+
+    if (authResponse && token && token !== 'false') {
       this.router.navigate(['/dashboard']);
     } else {
-      this.error.set('Invalid username or password.');
+      const message = authResponse && typeof authResponse.result === 'string'
+        ? authResponse.result
+        : 'Invalid username or password.';
+      this.error.set(message);
     }
   }
 

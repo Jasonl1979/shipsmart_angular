@@ -1,0 +1,145 @@
+.page-container {
+  padding: 2rem;
+  max-width: 100%;
+  margin: 0;
+}
+
+.summary-layout {
+  display: block;
+
+  &.with-compose {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.95fr);
+    gap: 1rem;
+    align-items: start;
+  }
+}
+
+.summary-pane {
+  min-width: 0;
+}
+
+.compose-pane {
+  min-width: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  padding: 1rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.content-section {
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  padding: 1rem;
+}
+
+.summary-row {
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.workflow-summary-row {
+  margin-bottom: 1rem;
+}
+
+.workflow-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.workflow-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--status-info) 14%, var(--bg-primary));
+  color: var(--text-primary);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.summary-section {
+  border-top: 1px solid var(--border-color);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.summary-note {
+  color: var(--text-secondary);
+}
+
+.draft-list {
+  margin-top: 0.7rem;
+}
+
+.draft-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  border-radius: 0.4rem;
+  padding: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.draft-item:hover {
+  background: var(--bg-tertiary);
+}
+
+.email-status {
+  color: var(--text-secondary);
+}
+
+.checkbox-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.8rem;
+}
+
+.action-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: 0;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+}
+
+.primary-btn {
+  background: var(--status-info);
+  color: #fff;
+}
+
+.secondary-btn {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .summary-layout.with-compose {
+    grid-template-columns: 1fr;
+  }
+
+  .compose-pane {
+    position: static;
+  }
+
+  .page-container {
+    padding: 1rem;
+  }
+}

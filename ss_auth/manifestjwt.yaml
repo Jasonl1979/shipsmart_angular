@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssauth
+  labels:
+    app: ssauth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssauth
+  template:
+    metadata:
+      labels:
+        app: ssauth
+    spec:
+      containers:
+      - name: ssauth
+        image: ssauth:dev
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        # CRITICAL: HPA needs 'requests' to calculate percentage
+        resources:
+          requests:
+            cpu: "100m"      # Baseline (0.1 CPU)
+            memory: "128Mi"
+          limits:
+            cpu: "100m"      # Maximum allowed
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssauth-entry
+spec:
+  type: LoadBalancer
+  selector:
+    app: ssauth
+  ports:
+    - protocol: TCP
+      port: 32772      # Access via http://localhost:32768
+      targetPort: 8080
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ssauth-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ssauth
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 2 # Scales up if CPU usage > 50m (50% of 100m)

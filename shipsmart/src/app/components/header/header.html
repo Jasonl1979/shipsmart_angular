@@ -1,22 +1,72 @@
 <header class="app-header">
   <div class="header-left">
+    <button
+      class="icon-button sidebar-toggle"
+      type="button"
+      (click)="toggleSidebar.emit()"
+      [title]="sidebarOpen() ? 'Collapse sidebar' : 'Expand sidebar'"
+      [attr.aria-label]="sidebarOpen() ? 'Collapse sidebar' : 'Expand sidebar'"
+    >
+      <span class="menu-icon" aria-hidden="true"></span>
+    </button>
+
     <div class="logo-section">
+      <span class="logo-box">📦</span>
       <span class="logo-icon">⚡</span>
       <span class="logo-text">ShipSmart</span>
     </div>
   </div>
 
   <div class="header-right">
+    <div class="account-meta">
+      <button
+        type="button"
+        class="meta-pill meta-pill-button"
+        *ngIf="isAdmin && !isAccessRestricted"
+        (click)="openEditCompanyDetails()"
+        title="Manage company"
+        aria-label="Manage company"
+      >
+        🏢 {{ company || 'Manage Company' }}
+      </button>
+      <span class="meta-pill" *ngIf="!isAdmin || isAccessRestricted">
+        🏢 {{ company || 'Manage Company' }}
+      </span>
+      <button
+        type="button"
+        class="meta-pill meta-pill-button"
+        *ngIf="userPackage && canManagePackage"
+        (click)="openManagePackage()"
+        title="Manage package"
+        aria-label="Manage package"
+      >
+        📦 {{ userPackage }}
+      </button>
+      <span class="meta-pill" *ngIf="userPackage && !canManagePackage">
+        📦 {{ userPackage }}
+      </span>
+      <span class="meta-pill" *ngIf="expiryDate">
+        Next Renewal date: {{ expiryDate }}
+      </span>
+    </div>
+
     <!-- Settings Button -->
     <div class="icon-button" (click)="toggleSettingsMenu()" title="Settings">
       ⚙️
       <div class="dropdown-menu" *ngIf="showSettingsMenu">
         <div class="menu-header">Theme Settings</div>
-        <button class="menu-item" (click)="setTheme('light')">☀️ Light Mode</button>
-        <button class="menu-item" (click)="setTheme('dark')">🌙 Dark Mode</button>
-        <button class="menu-item" (click)="setTheme('system')">💻 System Default</button>
-        <hr />
-        <div class="menu-header">Other Settings</div>
+        <button class="menu-item" [disabled]="isAccessRestricted" [class.disabled]="isAccessRestricted" (click)="setTheme('light')">☀️ Light Mode</button>
+        <button class="menu-item" [disabled]="isAccessRestricted" [class.disabled]="isAccessRestricted" (click)="setTheme('dark')">🌙 Dark Mode</button>
+        <button class="menu-item" [disabled]="isAccessRestricted" [class.disabled]="isAccessRestricted" (click)="setTheme('system')">💻 System Default</button>
+        <ng-container *ngIf="isAdmin && !isAccessRestricted">
+          <hr />
+          <div class="menu-header">Other Settings</div>
+          <button class="menu-item" (click)="openEditCompanyDetails()">🏢 Manage Company</button>
+        </ng-container>
+        <ng-container *ngIf="isAdmin && !isAccessRestricted">
+          <button class="menu-item" (click)="openManagePackage()">📦 Manage Package</button>
+        </ng-container>
+        <button class="menu-item disabled">📄 Export Data (Future)</button>
         <button class="menu-item disabled">🔔 Notifications (Future)</button>
       </div>
     </div>
@@ -30,7 +80,7 @@
           <small>{{ authService.currentUser()?.email }}</small>
         </div>
         <hr />
-        <a href="/user-account" class="menu-item">👤 Account Settings</a>
+        <a routerLink="/user-account" class="menu-item" (click)="showUserMenu = false">👤 Account Settings</a>
         <button class="menu-item" (click)="logout()">🚪 Logout</button>
       </div>
     </div>

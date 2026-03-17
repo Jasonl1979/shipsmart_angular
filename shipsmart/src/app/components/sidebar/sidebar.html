@@ -1,8 +1,15 @@
 <nav class="sidebar" [class.collapsed]="!isOpen()">
   <ul class="menu">
-    <li class="menu-section-title">Main</li>
-    <li *ngFor="let item of menuItems">
-      <a [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="menu-item">
+    <li *ngFor="let item of displayedMenuItems">
+      <a
+        [routerLink]="item.disabled ? null : item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: false}"
+        class="menu-item"
+        [class.disabled]="item.disabled"
+        [attr.aria-disabled]="item.disabled"
+        (click)="item.disabled ? $event.preventDefault() : null"
+      >
         <span class="icon">{{ item.icon }}</span>
         <span class="label" *ngIf="isOpen()">{{ item.label }}</span>
       </a>

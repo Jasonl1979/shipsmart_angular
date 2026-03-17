@@ -1,0 +1,91 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Order Fulfilment</h1>
+    <p>Create a new order or use an existing one, then choose supplier handling options.</p>
+  </div>
+
+  <div class="content-section">
+    <div class="field-group">
+      <label>
+        <input type="radio" name="orderSource" [(ngModel)]="useExistingOrder" [value]="true" />
+        Select from existing orders
+      </label>
+      <label>
+        <input type="radio" name="orderSource" [(ngModel)]="useExistingOrder" [value]="false" />
+        Create a new order
+      </label>
+    </div>
+
+    <div class="field-group">
+      <label for="existingOrder">Existing order</label>
+      <select id="existingOrder" [(ngModel)]="selectedOrderId" [disabled]="!useExistingOrder">
+        <option [ngValue]="undefined">Choose an order</option>
+        <option *ngFor="let order of dataService.orders()" [ngValue]="order.id">
+          {{ order.orderNumber }} - {{ order.customerName }}
+        </option>
+      </select>
+      <p class="note" *ngIf="!useExistingOrder">Switch to "Select from existing orders" above to use this dropdown.</p>
+    </div>
+
+    <div class="field-group" *ngIf="!useExistingOrder">
+      <label for="orderType">Order type</label>
+      <select id="orderType" [(ngModel)]="orderType">
+        <option value="Service">Service order</option>
+        <option value="Product">Product order</option>
+      </select>
+      <p class="note">Settings will save the client preference as the default later.</p>
+    </div>
+
+    <div class="field-group" *ngIf="!useExistingOrder">
+      <label for="newOrderNumber">New order number</label>
+      <input id="newOrderNumber" type="text" [(ngModel)]="newOrderNumber" placeholder="e.g. ORD-2026-210" />
+      <p class="note">Next opens New order where products can be selected from your product list or added as custom products.</p>
+    </div>
+
+    <div class="field-group" *ngIf="addedExistingProducts.length || addedCustomProducts.length">
+      <div class="added-products">
+        <h3>Added products</h3>
+
+        <div class="added-section" *ngIf="addedExistingProducts.length">
+          <h4>Existing products</h4>
+          <div class="added-item" *ngFor="let product of addedExistingProducts">
+            <span>{{ product.name }} ({{ product.sku }}) - ${{ product.price }}</span>
+            <button class="link-btn" type="button" (click)="removeExistingProduct(product.id)">Remove</button>
+          </div>
+        </div>
+
+        <div class="added-section" *ngIf="addedCustomProducts.length">
+          <h4>Custom products</h4>
+          <div class="added-item" *ngFor="let custom of addedCustomProducts; let i = index">
+            <span>{{ custom.name }} | Qty: {{ custom.quantity }} | Price: ${{ custom.price }}</span>
+            <button class="link-btn" type="button" (click)="removeCustomProduct(i)">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label>
+        <input type="checkbox" [(ngModel)]="requiresSupplies" />
+        This order requires supplies from suppliers
+      </label>
+    </div>
+
+    <div class="field-group">
+      <label>
+        <input type="checkbox" [(ngModel)]="callSupplierApi" />
+        Call preconfigured supplier API (to be configured in settings later)
+      </label>
+      <label>
+        <input type="checkbox" [(ngModel)]="generateSupplierDraftEmail" />
+        Generate supplier email drafts (email server/template from settings later)
+      </label>
+      <p class="note">Draft emails are only sent from the Order Summary page if enabled there.</p>
+    </div>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+    <button class="primary-btn" (click)="next()">Next</button>
+  </div>
+</div>

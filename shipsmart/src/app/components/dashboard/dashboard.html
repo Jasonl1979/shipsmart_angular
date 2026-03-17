@@ -1,4 +1,9 @@
 <div class="dashboard-container">
+  <div class="expired-message" *ngIf="showExpiredStandardMessage">
+    Package expired. Please ask a admin user to renew
+  </div>
+
+  <ng-container *ngIf="!showExpiredStandardMessage">
   <div class="dashboard-header">
     <div class="header-row">
       <div>
@@ -47,7 +52,28 @@
         <app-customer-widget *ngSwitchCase="'customers'" [rowsToShow]="rowsToShow"></app-customer-widget>
         <app-orders-widget *ngSwitchCase="'orders'" [rowsToShow]="rowsToShow"></app-orders-widget>
         <app-products-widget *ngSwitchCase="'products'" [rowsToShow]="rowsToShow"></app-products-widget>
+        <div class="fulfilment-widget" *ngSwitchCase="'fulfilment'">
+          <div class="widget-header-row">
+            <h3>Fulfilment History</h3>
+            <a class="view-all" [routerLink]="['/fulfilment']">View all</a>
+          </div>
+
+          <div class="fulfilment-list" *ngIf="recentFulfilments.length; else noFulfilmentHistory">
+            <a class="fulfilment-row" *ngFor="let item of recentFulfilments" [routerLink]="['/fulfilment/history', item.id]">
+              <div class="id-status">
+                <strong>{{ item.id }}</strong>
+                <span class="status-pill">{{ item.status }}</span>
+              </div>
+              <div class="meta">{{ formatDate(item.createdAt) }}</div>
+            </a>
+          </div>
+
+          <ng-template #noFulfilmentHistory>
+            <div class="empty-fulfilment">No fulfilment requests yet.</div>
+          </ng-template>
+        </div>
       </ng-container>
     </div>
   </div>
+  </ng-container>
 </div>

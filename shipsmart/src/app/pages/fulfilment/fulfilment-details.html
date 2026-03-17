@@ -1,0 +1,91 @@
+<div class="page-container" *ngIf="request as item; else notFound">
+  <div class="page-header">
+    <h1>Fulfilment History: {{ item.id }}</h1>
+    <p>Track statuses, emails, orders, invoices, and waybills for this request.</p>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+  </div>
+
+  <div class="details-layout" [class.with-compose]="isComposeEmailOpen()">
+    <div class="history-pane">
+      <div class="content-grid">
+        <section class="card">
+          <h2>Status</h2>
+          <p>Current status: <strong>{{ item.status }}</strong></p>
+          <p>Created: {{ formatDate(item.createdAt) }}</p>
+          <p *ngIf="item.completedAt">Completed: {{ formatDate(item.completedAt) }}</p>
+        </section>
+
+        <section class="card">
+          <h2>Emails</h2>
+          <div class="email-history-scroll" *ngIf="item.emails.length; else noEmailsHistory">
+            <div class="item-row email-row" *ngFor="let email of item.emails"
+              (click)="openViewEmailPage(email.id)">
+              <div class="email-summary">
+                <strong>{{ email.subject }}</strong>
+                <div class="email-meta">{{ email.supplier }} &middot; {{ email.status }}</div>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #noEmailsHistory>
+            <p class="note">No emails captured for this request yet.</p>
+          </ng-template>
+
+          <div class="new-email-form">
+            <button class="primary-btn" (click)="openComposeEmailPage()">Create new email</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Orders</h2>
+          <div class="item-row" *ngFor="let order of item.orders">
+            <div>{{ order.orderNumber }} | {{ order.status }}</div>
+            <a class="link-btn" href="" (click)="$event.preventDefault(); openOrderWizard()">Open in wizard</a>
+          </div>
+          <div *ngIf="!item.orders.length">
+            <p class="note">No orders created for this request yet.</p>
+            <button class="secondary-btn" (click)="openOrderWizard()">Create order</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Waybills</h2>
+          <div class="item-row" *ngFor="let waybill of item.waybills">
+            <div>{{ waybill.id }} | {{ waybill.status }} | {{ waybill.courierName }}</div>
+            <a class="link-btn" href="" (click)="$event.preventDefault(); openWaybillWizard()">Open in wizard</a>
+          </div>
+          <div *ngIf="!item.waybills.length">
+            <p class="note">No waybills created for this request yet.</p>
+            <button class="secondary-btn" (click)="openWaybillWizard()">Create waybill</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Invoices</h2>
+          <div class="item-row" *ngFor="let invoice of item.invoices">
+            <a [routerLink]="invoice.link">{{ invoice.id }}</a>
+            <span>{{ invoice.status }}</span>
+          </div>
+          <div *ngIf="!item.invoices.length">
+            <p class="note">No invoices created for this request yet.</p>
+            <button class="secondary-btn" (click)="openInvoiceWizard()">Create invoice</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <aside class="compose-pane" *ngIf="isComposeEmailOpen()">
+      <router-outlet></router-outlet>
+    </aside>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="page-container">
+    <p>History item not found.</p>
+    <button class="secondary-btn" (click)="back()">Back</button>
+  </div>
+</ng-template>

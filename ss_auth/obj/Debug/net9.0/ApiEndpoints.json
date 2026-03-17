@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "Auth.Controllers.AuthController",
+    "Method": "Token",
+    "RelativePath": "api/Auth/token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "creds",
+        "Type": "Auth.Controllers.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -21,6 +21,14 @@
 
   <div class="settings-section">
     <h3>Other Settings</h3>
+    <button type="button" class="settings-item link-item button-item" *ngIf="isAdmin" (click)="openManageCompany()">
+      <span>🏢 Manage Company</span>
+      <small>Edit company name and email</small>
+    </button>
+    <button type="button" class="settings-item link-item button-item" *ngIf="isAdmin" (click)="openManagePackage()">
+      <span>📦 Manage Package</span>
+      <small>Upgrade or downgrade your current plan</small>
+    </button>
     <div class="settings-item disabled">
       <span>🔔 Notifications</span>
       <small>Coming soon - PostgreSQL integration required</small>

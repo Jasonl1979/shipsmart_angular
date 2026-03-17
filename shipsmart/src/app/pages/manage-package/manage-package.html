@@ -1,0 +1,48 @@
+<div class="manage-package-container">
+  <h2>Manage Package</h2>
+
+  <div class="package-summary">
+    <label>Current Package</label>
+    <p>{{ currentPackage }}</p>
+  </div>
+
+  <div class="package-grid">
+    <div
+      class="package-card"
+      *ngFor="let option of packageOptions"
+      [class.active]="option === currentPackage"
+    >
+      <strong>{{ option }} - {{ packageDetails[option].title }}</strong>
+      <p class="description">{{ packageDetails[option].description }}</p>
+      <p class="price">{{ packageDetails[option].price }}</p>
+      <ul class="feature-list">
+        <li *ngFor="let feature of packageDetails[option].features">{{ feature }}</li>
+      </ul>
+      <div class="plan-actions">
+        <button
+          type="button"
+          class="buy-now-inline"
+          (click)="$event.stopPropagation(); buyNow(option)"
+        >
+          Buy Now
+        </button>
+        <small class="current-plan-inline" *ngIf="option === currentPackage">Current plan</small>
+      </div>
+      <small class="cancel-anytime">Cancel anytime</small>
+    </div>
+  </div>
+
+  <div class="cancel-section">
+    <button type="button" class="cancel-now-btn" (click)="promptCancelNow()">Cancel Now</button>
+
+    <div class="cancel-confirm" *ngIf="showCancelConfirm">
+      <p>Are you sure? Sorry to see you go.</p>
+      <div class="confirm-actions">
+        <button type="button" class="confirm-yes" (click)="confirmCancelNow()">Yes</button>
+        <button type="button" class="confirm-no" (click)="cancelCancelNow()">No</button>
+      </div>
+    </div>
+
+    <p class="cancel-outcome" *ngIf="cancelOutcomeMessage">{{ cancelOutcomeMessage }}</p>
+  </div>
+</div>

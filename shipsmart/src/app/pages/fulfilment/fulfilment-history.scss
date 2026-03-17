@@ -1,0 +1,146 @@
+.page-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+
+  h1 {
+    margin: 0 0 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .subtitle {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+}
+
+.action-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.primary-btn,
+.secondary-btn,
+.link-btn {
+  border: 0;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+}
+
+.primary-btn {
+  background: var(--status-info);
+  color: #fff;
+}
+
+.secondary-btn {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.link-btn {
+  background: transparent;
+  color: var(--status-info);
+  text-decoration: underline;
+  padding: 0;
+}
+
+.content-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.section-note {
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.filters-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.status-filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+}
+
+.status-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-primary);
+}
+
+.sort-group select {
+  min-width: 220px;
+  border: 1px solid var(--border-color);
+  border-radius: 0.35rem;
+  padding: 0.45rem 0.55rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.7rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+  }
+}
+
+.status-badge {
+  background: var(--status-warning);
+  color: #fff;
+  border-radius: 0.3rem;
+  padding: 0.25rem 0.6rem;
+}
+
+.empty-state {
+  border: 1px dashed var(--border-color);
+  padding: 1rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+
+  .action-row {
+    flex-direction: column;
+  }
+}

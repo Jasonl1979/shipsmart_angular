@@ -1,0 +1,164 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Stuff\\Projects\\Shipsmart\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4F7540F9-6D2F-480C-80D4-184EE9190A4B}|ss_auth\\ss_auth.csproj|c:\\stuff\\projects\\shipsmart\\ss_auth\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F7540F9-6D2F-480C-80D4-184EE9190A4B}|ss_auth\\ss_auth.csproj|solutionrelative:ss_auth\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F7540F9-6D2F-480C-80D4-184EE9190A4B}|ss_auth\\ss_auth.csproj|c:\\stuff\\projects\\shipsmart\\ss_auth\\ss_auth.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{4F7540F9-6D2F-480C-80D4-184EE9190A4B}|ss_auth\\ss_auth.csproj|solutionrelative:ss_auth\\ss_auth.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|c:\\stuff\\projects\\shipsmart\\ss_customers\\controllers\\custcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|solutionrelative:ss_customers\\controllers\\custcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|c:\\stuff\\projects\\shipsmart\\ss_customers\\customerclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|solutionrelative:ss_customers\\customerclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F7540F9-6D2F-480C-80D4-184EE9190A4B}|ss_auth\\ss_auth.csproj|c:\\stuff\\projects\\shipsmart\\ss_auth\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4F7540F9-6D2F-480C-80D4-184EE9190A4B}|ss_auth\\ss_auth.csproj|solutionrelative:ss_auth\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|c:\\stuff\\projects\\shipsmart\\ss_customers\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|solutionrelative:ss_customers\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|c:\\stuff\\projects\\shipsmart\\ss_customers\\ss_customers.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|solutionrelative:ss_customers\\ss_customers.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|c:\\stuff\\projects\\shipsmart\\ss_customers\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABE5F197-4704-47C8-A8DF-E0803FFDD589}|ss_customers\\ss_customers.csproj|solutionrelative:ss_customers\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 307,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ss_auth.http",
+              "DocumentMoniker": "C:\\Stuff\\Projects\\Shipsmart\\ss_auth\\ss_auth.http",
+              "RelativeDocumentMoniker": "ss_auth\\ss_auth.http",
+              "ToolTip": "C:\\Stuff\\Projects\\Shipsmart\\ss_auth\\ss_auth.http",
+              "RelativeToolTip": "ss_auth\\ss_auth.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-03-08T11:08:28.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Stuff\\Projects\\Shipsmart\\ss_auth\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ss_auth\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Stuff\\Projects\\Shipsmart\\ss_auth\\Controllers\\AuthController.cs*",
+              "RelativeToolTip": "ss_auth\\Controllers\\AuthController.cs*",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAAD8AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-08T11:05:15.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\appsettings.json",
+              "RelativeDocumentMoniker": "ss_customers\\appsettings.json",
+              "ToolTip": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\appsettings.json",
+              "RelativeToolTip": "ss_customers\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-07T20:41:28.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\Program.cs",
+              "RelativeDocumentMoniker": "ss_customers\\Program.cs",
+              "ToolTip": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\Program.cs",
+              "RelativeToolTip": "ss_customers\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T20:39:32.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Stuff\\Projects\\Shipsmart\\ss_auth\\appsettings.json",
+              "RelativeDocumentMoniker": "ss_auth\\appsettings.json",
+              "ToolTip": "C:\\Stuff\\Projects\\Shipsmart\\ss_auth\\appsettings.json",
+              "RelativeToolTip": "ss_auth\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-07T20:16:02.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ss_customers.http",
+              "DocumentMoniker": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\ss_customers.http",
+              "RelativeDocumentMoniker": "ss_customers\\ss_customers.http",
+              "ToolTip": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\ss_customers.http",
+              "RelativeToolTip": "ss_customers\\ss_customers.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-03-07T19:22:27.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomerClass.cs",
+              "DocumentMoniker": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\CustomerClass.cs",
+              "RelativeDocumentMoniker": "ss_customers\\CustomerClass.cs",
+              "ToolTip": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\CustomerClass.cs",
+              "RelativeToolTip": "ss_customers\\CustomerClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T19:20:22.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CustController.cs",
+              "DocumentMoniker": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\Controllers\\CustController.cs",
+              "RelativeDocumentMoniker": "ss_customers\\Controllers\\CustController.cs",
+              "ToolTip": "C:\\Stuff\\Projects\\Shipsmart\\ss_customers\\Controllers\\CustController.cs",
+              "RelativeToolTip": "ss_customers\\Controllers\\CustController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAWwBkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T19:11:54.68Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -8,6 +8,18 @@ import { CustomersComponent } from './pages/customers/customers';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details';
 import { OrdersComponent } from './pages/orders/orders';
 import { ProductsComponent } from './pages/products/products';
+import { ManagePackageComponent } from './pages/manage-package/manage-package';
+import { EditCompanyDetailsComponent } from './pages/edit-company-details/edit-company-details';
+import { FulfilmentHistoryComponent } from './pages/fulfilment/fulfilment-history';
+import { OrderHelpComponent } from './pages/fulfilment/order-help';
+import { OrderFulfilmentComponent } from './pages/fulfilment/order-fulfilment';
+import { NewOrderComponent } from './pages/fulfilment/new-order';
+import { SupplierCommunicationComponent } from './pages/fulfilment/supplier-communication';
+import { InvoiceGenerationComponent } from './pages/fulfilment/invoice-generation';
+import { WaybillGenerationComponent } from './pages/fulfilment/waybill-generation';
+import { OrderSummaryComponent } from './pages/fulfilment/order-summary';
+import { FulfilmentDetailsComponent } from './pages/fulfilment/fulfilment-details';
+import { ComposeEmailComponent } from './pages/fulfilment/compose-email';
 import { authGuard, loginGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -18,7 +30,32 @@ export const routes: Routes = [
   { path: 'customers', component: CustomersComponent, canActivate: [authGuard] },
   { path: 'customers/:id', component: CustomerDetailsComponent, canActivate: [authGuard] },
   { path: 'orders', component: OrdersComponent, canActivate: [authGuard] },
+  { path: 'fulfilment', component: FulfilmentHistoryComponent, canActivate: [authGuard] },
+  { path: 'fulfilment/order-help', component: OrderHelpComponent, canActivate: [authGuard] },
+  { path: 'fulfilment/order-fulfilment', component: OrderFulfilmentComponent, canActivate: [authGuard] },
+  { path: 'fulfilment/new-order', component: NewOrderComponent, canActivate: [authGuard] },
+  { path: 'fulfilment/supplier-communication', component: SupplierCommunicationComponent, canActivate: [authGuard] },
+  { path: 'fulfilment/invoice-generation', component: InvoiceGenerationComponent, canActivate: [authGuard] },
+  { path: 'fulfilment/waybill-generation', component: WaybillGenerationComponent, canActivate: [authGuard] },
+  {
+    path: 'fulfilment/order-summary',
+    component: OrderSummaryComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: 'compose-email', component: ComposeEmailComponent, canActivate: [authGuard] }
+    ]
+  },
+  {
+    path: 'fulfilment/history/:id',
+    component: FulfilmentDetailsComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: 'compose-email', component: ComposeEmailComponent, canActivate: [authGuard] }
+    ]
+  },
   { path: 'products', component: ProductsComponent, canActivate: [authGuard] },
+  { path: 'manage-package', component: ManagePackageComponent, canActivate: [authGuard] },
+  { path: 'edit-company-details', component: EditCompanyDetailsComponent, canActivate: [authGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [authGuard] },
   { path: 'user-account', component: UserAccountComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '/dashboard' }

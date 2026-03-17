@@ -3,6 +3,15 @@
   margin: 0 auto;
 }
 
+.expired-message {
+  background: #fff4e5;
+  border: 1px solid #ffcc80;
+  color: #8a4b00;
+  border-radius: 8px;
+  padding: 16px;
+  font-weight: 600;
+}
+
 .dashboard-header {
   margin-bottom: 30px;
 
@@ -104,6 +113,86 @@
   color: var(--text-secondary);
   cursor: grab;
   width: fit-content;
+}
+
+.fulfilment-widget {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.widget-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text-primary);
+  }
+}
+
+.view-all {
+  color: var(--status-info);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fulfilment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fulfilment-row {
+  display: block;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--bg-tertiary);
+  }
+}
+
+.id-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  strong {
+    color: var(--text-primary);
+  }
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+  background: var(--status-warning);
+  color: #fff;
+}
+
+.meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.empty-fulfilment {
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,84 @@
+<div class="page-container" *ngIf="fulfilmentService.activeRequest() as request">
+  <div class="page-header">
+    <h1>Order Summary</h1>
+    <p>Review the selected workflow screens and the captured information before processing.</p>
+  </div>
+
+  <div class="summary-layout" [class.with-compose]="isComposeEmailOpen()">
+    <div class="summary-pane">
+      <div class="content-section">
+        <div class="summary-row"><strong>Request ID:</strong> {{ request.id }}</div>
+        <div class="summary-row workflow-summary-row">
+          <strong>Selected Workflow:</strong>
+          <div class="workflow-chip-list">
+            <span class="workflow-chip" *ngFor="let label of selectedWorkflowLabels">{{ label }}</span>
+          </div>
+        </div>
+
+        <section class="summary-section">
+          <h2>Order Fulfilment</h2>
+          <div class="summary-row"><strong>Order Source:</strong> {{ request.selectedExistingOrderId !== undefined ? 'Existing order' : 'New order' }}</div>
+          <div class="summary-row"><strong>Order Type:</strong> {{ request.orderType || 'Not set' }}</div>
+          <div class="summary-row"><strong>Requires Supplies:</strong> {{ request.requiresSupplies ? 'Yes' : 'No' }}</div>
+          <div class="summary-row"><strong>Supplier API:</strong> {{ request.supplierApiRequested ? 'Enabled' : 'Disabled' }}</div>
+          <div class="summary-row"><strong>Draft Supplier Email:</strong> {{ request.generateSupplierDraftEmail ? 'Enabled' : 'Disabled' }}</div>
+        </section>
+
+        <section class="summary-section" *ngIf="isNewOrderFlow">
+          <h2>New Order</h2>
+          <div *ngIf="request.selectedExistingOrderId !== undefined; else newOrderDetails">
+            <p class="summary-note">Skipped for this request because an existing order was selected.</p>
+          </div>
+
+          <ng-template #newOrderDetails>
+            <div class="summary-row"><strong>Order Number:</strong> {{ request.newOrderNumber || 'Not set' }}</div>
+            <div class="summary-row"><strong>Items Added:</strong> {{ newOrderItemCount }}</div>
+            <div class="summary-row"><strong>Existing Catalog Items:</strong> {{ request.newOrderProductIds?.length || 0 }}</div>
+            <div class="summary-row"><strong>Custom Items:</strong> {{ request.newOrderCustomProducts?.length || 0 }}</div>
+          </ng-template>
+        </section>
+
+        <section class="summary-section" *ngIf="isWorkflowStepSelected('supplier-communication')">
+          <h2>Supplier Communication</h2>
+          <div *ngIf="draftEmails.length; else noDrafts" class="draft-list">
+            <button class="draft-item" *ngFor="let email of draftEmails" type="button" (click)="openDraftEmail(email.id)">
+              <div><strong>{{ email.subject }}</strong></div>
+              <div>{{ email.supplier }}</div>
+              <div class="email-status">Status: {{ email.status }}</div>
+            </button>
+          </div>
+
+          <ng-template #noDrafts>
+            <p class="summary-note">No draft emails were created for this request.</p>
+          </ng-template>
+
+          <label class="checkbox-row">
+            <input type="checkbox" [(ngModel)]="sendEmailsNow" />
+            Send draft emails now during Accept
+          </label>
+        </section>
+
+        <section class="summary-section" *ngIf="isWorkflowStepSelected('invoice-generation')">
+          <h2>Invoice Generation</h2>
+          <div class="summary-row"><strong>Invoice Method:</strong> {{ request.invoiceMethod || 'Not set' }}</div>
+        </section>
+
+        <section class="summary-section" *ngIf="isWorkflowStepSelected('waybill-generation')">
+          <h2>Waybill Generation</h2>
+          <div class="summary-row"><strong>Waybills:</strong> {{ request.waybillCount }}</div>
+          <div class="summary-row"><strong>Courier Integration:</strong> {{ request.courierIntegration }}</div>
+        </section>
+      </div>
+    </div>
+
+    <aside class="compose-pane" *ngIf="isComposeEmailOpen()">
+      <router-outlet></router-outlet>
+    </aside>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+    <button class="secondary-btn" (click)="changeWorkflow()">Change Workflow</button>
+    <button class="primary-btn" (click)="accept()">Accept</button>
+  </div>
+</div>

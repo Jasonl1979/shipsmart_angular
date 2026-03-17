@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sscustomers
+  labels:
+    app: sscustomers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sscustomers
+  template:
+    metadata:
+      labels:
+        app: sscustomers
+    spec:
+      containers:
+      - name: sscustomers
+        image: sscustomers:dev
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        # CRITICAL: HPA needs 'requests' to calculate percentage
+        resources:
+          requests:
+            cpu: "100m"      # Baseline (0.1 CPU)
+            memory: "128Mi"
+          limits:
+            cpu: "100m"      # Maximum allowed
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sscustomers-entry
+spec:
+  type: LoadBalancer
+  selector:
+    app: sscustomers
+  ports:
+    - protocol: TCP
+      port: 32773      # Access via http://localhost:32768
+      targetPort: 8080
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: sscustomers-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sscustomers
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 2 # Scales up if CPU usage > 50m (50% of 100m)

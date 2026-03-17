@@ -1,0 +1,41 @@
+<div class="page-container" *ngIf="fulfilmentService.activeRequest() as request">
+  <div class="page-header">
+    <h1>Supplier Communication</h1>
+    <p>Email server settings, subjects, and templates will be sourced from Settings later.</p>
+  </div>
+
+  <div class="content-section">
+    <p>Generated draft emails for this request:</p>
+    <div *ngIf="request.emails.length; else noEmails" class="draft-list">
+      <div
+        class="draft-item"
+        *ngFor="let email of request.emails"
+        [class.active]="isSelected(email)"
+        (click)="toggleEmail(email)"
+      >
+        <div class="draft-header">
+          <strong>{{ email.subject }}</strong>
+          <span class="hint">{{ isSelected(email) ? 'Hide full email' : 'View full email' }}</span>
+        </div>
+        <div>{{ email.supplier }} | {{ email.status }}</div>
+        <div class="full-email" *ngIf="isSelected(email)">
+          <div><strong>Subject:</strong> {{ email.subject }}</div>
+          <div><strong>Supplier:</strong> {{ email.supplier }}</div>
+          <div><strong>Status:</strong> {{ email.status }}</div>
+          <div class="email-body"><strong>Body:</strong> {{ email.body }}</div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noEmails>
+      <p>No draft emails were generated on the previous page.</p>
+    </ng-template>
+
+    <p class="note">Emails remain in draft and are only sent from the Order Summary page if enabled.</p>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+    <button class="primary-btn" (click)="next()">Next</button>
+  </div>
+</div>

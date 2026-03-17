@@ -10,5 +10,11 @@
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
+  },
+  "/api/auth": {
+    "target": "http://10.0.0.102:32772",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }

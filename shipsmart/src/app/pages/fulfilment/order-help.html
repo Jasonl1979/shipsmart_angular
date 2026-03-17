@@ -1,0 +1,66 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Workflow Selection</h1>
+    <p>Choose any additional screens for this workflow. Your selection is saved for the next request and can be changed later.</p>
+  </div>
+
+  <div class="content-section">
+    <div class="transfer-layout">
+      <section class="transfer-panel">
+        <div class="transfer-header">
+          <h2>Available Screens</h2>
+          <span>{{ availableSteps.length }}</span>
+        </div>
+
+        <button
+          class="transfer-item"
+          *ngFor="let step of availableSteps"
+          type="button"
+          [class.active]="availableSelectionKey === step.key"
+          (click)="selectAvailable(step.key)"
+        >
+          <span class="transfer-title">{{ step.label }}</span>
+          <span class="transfer-copy">{{ step.description }}</span>
+        </button>
+
+        <p class="empty-state" *ngIf="!availableSteps.length">All available screens are already selected.</p>
+      </section>
+
+      <div class="transfer-actions" aria-label="Move workflow steps">
+        <button class="secondary-btn" type="button" [disabled]="!availableSelectionKey" (click)="moveSelectedRight()">
+          Add &gt;
+        </button>
+        <button class="secondary-btn" type="button" [disabled]="!selectedSelectionKey" (click)="moveSelectedLeft()">
+          &lt; Remove
+        </button>
+      </div>
+
+      <section class="transfer-panel">
+        <div class="transfer-header">
+          <h2>Selected Workflow</h2>
+          <span>{{ selectedSteps.length }}</span>
+        </div>
+
+        <button
+          class="transfer-item selected"
+          *ngFor="let step of selectedSteps"
+          type="button"
+          [class.active]="selectedSelectionKey === step.key"
+          (click)="selectSelected(step.key)"
+        >
+          <span class="transfer-title">{{ step.label }}</span>
+          <span class="transfer-copy">{{ step.description }}</span>
+        </button>
+
+        <p class="empty-state" *ngIf="!selectedSteps.length">No optional screens selected. Workflow will continue from Order Fulfilment to Order Summary.</p>
+      </section>
+    </div>
+
+    <p class="validation-message" *ngIf="validationMessage">{{ validationMessage }}</p>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+    <button class="primary-btn" (click)="next()">Next</button>
+  </div>
+</div>
