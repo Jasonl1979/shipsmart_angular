@@ -39,6 +39,7 @@ const WORKFLOW_STEP_DEFINITIONS: WorkflowStepDefinition[] = [
 ];
 
 const MANDATORY_START_ROUTE = '/fulfilment/order-fulfilment';
+const NEW_ORDER_CUSTOMER_ROUTE = '/fulfilment/customer-selection';
 const CONDITIONAL_NEW_ORDER_ROUTE = '/fulfilment/new-order';
 const DEFAULT_WORKFLOW_SELECTION: WorkflowStepKey[] = WORKFLOW_STEP_DEFINITIONS.map((step) => step.key);
 
@@ -93,6 +94,20 @@ export interface NewOrderCustomProduct {
   price: number;
 }
 
+export interface FulfilmentCustomerInfo {
+  mode: 'Existing' | 'New';
+  existingCustomerId?: number;
+  name: string;
+  address: string;
+  contactDetails: string;
+  email: string;
+  companyName?: string;
+  vatNo?: string;
+  discount?: number;
+  reference: string;
+  accountNumber: string;
+}
+
 export interface FulfilmentRequest {
   id: string;
   createdAt: string;
@@ -101,6 +116,7 @@ export interface FulfilmentRequest {
   orderHelpAcknowledged: boolean;
   workflowSteps: WorkflowStepKey[];
   selectedExistingOrderId?: number;
+  customer?: FulfilmentCustomerInfo;
   newOrderNumber?: string;
   newOrderProductIds?: number[];
   newOrderCustomProducts?: NewOrderCustomProduct[];
@@ -231,9 +247,12 @@ export class FulfilmentService {
     supplierApiRequested: boolean;
     generateSupplierDraftEmail: boolean;
   }): void {
+    const current = this.activeRequest();
+
     this.patchActiveRequest({
       selectedExistingOrderId: orderInfo.selectedExistingOrderId,
       newOrderNumber: orderInfo.newOrderNumber,
+      customer: orderInfo.selectedExistingOrderId !== undefined ? undefined : current?.customer,
       orderType: orderInfo.orderType,
       requiresSupplies: orderInfo.requiresSupplies,
       supplierApiRequested: orderInfo.supplierApiRequested,
@@ -261,6 +280,10 @@ export class FulfilmentService {
       newOrderProductIds: [...productIds],
       newOrderCustomProducts: [...customProducts],
     });
+  }
+
+  setCustomerInfo(customer: FulfilmentCustomerInfo): void {
+    this.patchActiveRequest({ customer: { ...customer } });
   }
 
   runProcess(sendDraftEmailsNow: boolean): void {
@@ -491,7 +514,7 @@ export class FulfilmentService {
     return [
       '/fulfilment/order-help',
       MANDATORY_START_ROUTE,
-      ...(useExistingOrder ? [] : [CONDITIONAL_NEW_ORDER_ROUTE]),
+      ...(useExistingOrder ? [] : [NEW_ORDER_CUSTOMER_ROUTE, CONDITIONAL_NEW_ORDER_ROUTE]),
       ...selectedWorkflowRoutes,
       '/fulfilment/order-summary'
     ];

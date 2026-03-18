@@ -1,0 +1,83 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Customer</h1>
+    <p>Select an existing customer or capture a new customer for this order.</p>
+  </div>
+
+  <div class="content-section">
+    <div class="field-group">
+      <label>
+        <input type="radio" name="customerMode" [(ngModel)]="useExistingCustomer" [value]="true" />
+        Select existing customer
+      </label>
+      <label>
+        <input type="radio" name="customerMode" [(ngModel)]="useExistingCustomer" [value]="false" />
+        Create new customer
+      </label>
+    </div>
+
+    <div class="field-group" *ngIf="useExistingCustomer">
+      <label for="existingCustomer">Existing customer</label>
+      <select id="existingCustomer" [ngModel]="selectedExistingCustomerId" (ngModelChange)="onExistingCustomerChange($event)">
+        <option [ngValue]="undefined">Choose a customer</option>
+        <option *ngFor="let customer of dataService.customers()" [ngValue]="customer.id">
+          {{ customer.name }} - {{ customer.email }}
+        </option>
+      </select>
+    </div>
+
+    <div class="fields-grid">
+      <div class="field-group">
+        <label for="customerName">Name</label>
+        <input id="customerName" type="text" [(ngModel)]="name" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerAddress">Addresses</label>
+        <input id="customerAddress" type="text" [(ngModel)]="address" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerContact">Contact details</label>
+        <input id="customerContact" type="text" [(ngModel)]="contactDetails" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerEmail">Email</label>
+        <input id="customerEmail" type="email" [(ngModel)]="email" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerCompany">Company name (optional)</label>
+        <input id="customerCompany" type="text" [(ngModel)]="companyName" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerVat">VAT no (optional)</label>
+        <input id="customerVat" type="text" [(ngModel)]="vatNo" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerDiscount">Discount (optional)</label>
+        <input id="customerDiscount" type="number" min="0" step="0.01" [(ngModel)]="discount" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerReference">Reference</label>
+        <input id="customerReference" type="text" [(ngModel)]="reference" />
+      </div>
+
+      <div class="field-group">
+        <label for="customerAccount">Account number</label>
+        <input id="customerAccount" type="text" [(ngModel)]="accountNumber" />
+      </div>
+    </div>
+
+    <p class="validation-message" *ngIf="validationMessage">{{ validationMessage }}</p>
+  </div>
+
+  <div class="action-row">
+    <button class="secondary-btn" (click)="back()">Back</button>
+    <button class="primary-btn" (click)="next()">Next</button>
+  </div>
+</div>

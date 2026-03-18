@@ -1,8 +1,11 @@
-<div class="settings-container">
-  <h2>Settings</h2>
-  
-  <div class="settings-section">
-    <h3>Theme Preferences</h3>
+<div class="settings-page">
+  <div class="page-header">
+    <h1>Settings</h1>
+    <p>Manage application preferences and available admin tools.</p>
+  </div>
+
+  <section class="settings-panel">
+    <h2>Theme Preferences</h2>
     <div class="settings-group">
       <label>
         <input type="radio" name="theme" [checked]="themeMode === 'light'" (change)="setTheme('light')" />
@@ -17,13 +20,20 @@
         💻 System Default
       </label>
     </div>
-  </div>
+  </section>
 
-  <div class="settings-section">
-    <h3>Other Settings</h3>
+  <section class="settings-panel">
+    <h2>Admin Tools</h2>
+    <p class="section-copy" *ngIf="isAdmin">Open the management pages for company details, configuration, and package administration.</p>
+    <p class="section-copy" *ngIf="!isAdmin">Admin tools are only available to admin users.</p>
+
     <button type="button" class="settings-item link-item button-item" *ngIf="isAdmin" (click)="openManageCompany()">
       <span>🏢 Manage Company</span>
       <small>Edit company name and email</small>
+    </button>
+    <button type="button" class="settings-item link-item button-item" *ngIf="isAdmin" (click)="openManageConfig()">
+      <span>🛠️ Manage config</span>
+      <small>Manage email, supplier API, and courier API configuration</small>
     </button>
     <button type="button" class="settings-item link-item button-item" *ngIf="isAdmin" (click)="openManagePackage()">
       <span>📦 Manage Package</span>
@@ -37,5 +47,5 @@
       <span>📄 Export Data</span>
       <small>Coming soon - PostgreSQL integration required</small>
     </div>
-  </div>
+  </section>
 </div>

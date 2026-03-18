@@ -1,26 +1,41 @@
-.settings-container {
-  max-width: 800px;
-  background: var(--bg-secondary);
-  border-radius: 8px;
-  padding: 30px;
-  border: 1px solid var(--border-color);
+.settings-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
 
-  h2 {
-    margin-top: 0;
+.page-header {
+  margin-bottom: 1rem;
+
+  h1 {
+    margin: 0 0 0.4rem;
     color: var(--text-primary);
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 15px;
+    font-size: 1.8rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
   }
 }
 
-.settings-section {
-  margin: 25px 0;
+.settings-panel {
+  margin-bottom: 1rem;
+  padding: 1.25rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
 
-  h3 {
-    font-size: 16px;
+  h2 {
+    margin: 0 0 0.6rem;
     color: var(--text-primary);
-    margin: 0 0 15px 0;
+    font-size: 1.05rem;
   }
+}
+
+.section-copy {
+  margin: 0 0 1rem;
+  color: var(--text-secondary);
 }
 
 .settings-group {
@@ -82,5 +97,11 @@
     border: 1px solid transparent;
     font: inherit;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 1rem;
   }
 }

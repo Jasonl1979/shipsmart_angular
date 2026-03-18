@@ -26,6 +26,20 @@
 
         <section class="summary-section" *ngIf="isNewOrderFlow">
           <h2>New Order</h2>
+          <div class="summary-subsection" *ngIf="request.customer as customer">
+            <h3>Customer</h3>
+            <div class="summary-row"><strong>Customer Mode:</strong> {{ customer.mode }}</div>
+            <div class="summary-row"><strong>Name:</strong> {{ customer.name }}</div>
+            <div class="summary-row"><strong>Addresses:</strong> {{ customer.address }}</div>
+            <div class="summary-row"><strong>Contact Details:</strong> {{ customer.contactDetails }}</div>
+            <div class="summary-row"><strong>Email:</strong> {{ customer.email }}</div>
+            <div class="summary-row"><strong>Company Name:</strong> {{ customer.companyName || 'Not set' }}</div>
+            <div class="summary-row"><strong>VAT No:</strong> {{ customer.vatNo || 'Not set' }}</div>
+            <div class="summary-row"><strong>Discount:</strong> {{ customer.discount ?? 'Not set' }}</div>
+            <div class="summary-row"><strong>Reference:</strong> {{ customer.reference }}</div>
+            <div class="summary-row"><strong>Account Number:</strong> {{ customer.accountNumber }}</div>
+          </div>
+
           <div *ngIf="request.selectedExistingOrderId !== undefined; else newOrderDetails">
             <p class="summary-note">Skipped for this request because an existing order was selected.</p>
           </div>
@@ -78,7 +92,6 @@
 
   <div class="action-row">
     <button class="secondary-btn" (click)="back()">Back</button>
-    <button class="secondary-btn" (click)="changeWorkflow()">Change Workflow</button>
     <button class="primary-btn" (click)="accept()">Accept</button>
   </div>
 </div>

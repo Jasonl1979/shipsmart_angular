@@ -27,10 +27,6 @@ export class OrderSummaryComponent {
     ]);
   }
 
-  changeWorkflow(): void {
-    this.router.navigate(['/fulfilment/order-help']);
-  }
-
   get draftEmails(): FulfilmentEmail[] {
     const request = this.fulfilmentService.activeRequest();
     if (!request) {

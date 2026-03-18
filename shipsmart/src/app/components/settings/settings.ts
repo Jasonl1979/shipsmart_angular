@@ -38,4 +38,8 @@ export class SettingsComponent {
   openManagePackage(): void {
     this.router.navigate(['/manage-package']);
   }
+
+  openManageConfig(): void {
+    this.router.navigate(['/manage-config']);
+  }
 }

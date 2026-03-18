@@ -127,6 +127,10 @@
   color: #fff;
   border-radius: 0.3rem;
   padding: 0.25rem 0.6rem;
+
+  &.completed {
+    background: var(--status-success);
+  }
 }
 
 .empty-state {

@@ -1,0 +1,286 @@
+<div class="manage-config-container">
+  <h2>Manage config</h2>
+
+  <div class="config-section">
+    <div class="settings-card">
+      <div class="settings-card-header">
+        <div>
+          <h4>Email server</h4>
+          <p>Configure sender details and SMTP delivery settings.</p>
+        </div>
+      </div>
+
+      <div class="config-grid">
+        <label>
+          <span>Sender name</span>
+          <input type="text" [(ngModel)]="emailServerConfig.senderName" />
+        </label>
+        <label>
+          <span>Sender email</span>
+          <input type="email" [(ngModel)]="emailServerConfig.senderEmail" />
+        </label>
+        <label>
+          <span>Reply-to email</span>
+          <input type="email" [(ngModel)]="emailServerConfig.replyToEmail" />
+        </label>
+        <label>
+          <span>SMTP host</span>
+          <input type="text" [(ngModel)]="emailServerConfig.smtpHost" />
+        </label>
+        <label>
+          <span>SMTP port</span>
+          <input type="number" min="1" [(ngModel)]="emailServerConfig.smtpPort" />
+        </label>
+        <label>
+          <span>Username</span>
+          <input type="text" [(ngModel)]="emailServerConfig.username" />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" [(ngModel)]="emailServerConfig.password" />
+        </label>
+      </div>
+
+      <div class="config-actions">
+        <button type="button" class="secondary-btn" (click)="resetEmailServerConfiguration()">Reset</button>
+        <button type="button" class="primary-btn" (click)="saveEmailServerConfiguration()">Save Email Server</button>
+      </div>
+
+      <p class="config-message" *ngIf="emailServerSavedMessage">{{ emailServerSavedMessage }}</p>
+    </div>
+
+    <div class="settings-card">
+      <div class="settings-card-header">
+        <div>
+          <h4>Customer email templates</h4>
+          <p>Manage emails sent to customers across fulfilment events.</p>
+        </div>
+        <button type="button" class="secondary-btn add-btn" (click)="addCustomerTemplate()">Add Custom Template</button>
+      </div>
+
+      <div class="template-list">
+        <div class="template-card" *ngFor="let template of customerTemplates; let i = index">
+          <div class="template-header">
+            <h5>{{ template.name || ('Customer Template ' + (i + 1)) }}</h5>
+            <div class="template-actions">
+              <span class="template-badge" *ngIf="!template.isCustom">Default</span>
+              <button type="button" class="secondary-btn" (click)="toggleCustomerTemplateMinimized(template.id)">
+                {{ isCustomerTemplateMinimized(template.id) ? 'Expand' : 'Minimise' }}
+              </button>
+              <button type="button" class="remove-btn" (click)="removeCustomerTemplate(template.id)">Remove</button>
+            </div>
+          </div>
+
+          <div class="config-grid" *ngIf="!isCustomerTemplateMinimized(template.id)">
+            <label>
+              <span>Name</span>
+              <input type="text" [(ngModel)]="template.name" />
+            </label>
+            <label>
+              <span>Subject</span>
+              <input type="text" [(ngModel)]="template.subject" />
+            </label>
+          </div>
+
+          <label class="config-textarea" *ngIf="!isCustomerTemplateMinimized(template.id)">
+            <span>Body</span>
+            <textarea rows="4" [(ngModel)]="template.body"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="config-actions">
+        <button type="button" class="secondary-btn" (click)="resetCustomerTemplates()">Reset</button>
+        <button type="button" class="primary-btn" (click)="saveCustomerTemplates()">Save Customer Templates</button>
+      </div>
+
+      <p class="config-message" *ngIf="customerTemplatesSavedMessage">{{ customerTemplatesSavedMessage }}</p>
+    </div>
+
+    <div class="settings-card">
+      <div class="settings-card-header">
+        <div>
+          <h4>Supplier email templates</h4>
+          <p>Manage email templates used for supplier communication.</p>
+        </div>
+        <button type="button" class="secondary-btn add-btn" (click)="addSupplierTemplate()">Add Custom Template</button>
+      </div>
+
+      <div class="template-list">
+        <div class="template-card" *ngFor="let template of supplierTemplates; let i = index">
+          <div class="template-header">
+            <h5>{{ template.name || ('Supplier Template ' + (i + 1)) }}</h5>
+            <div class="template-actions">
+              <span class="template-badge" *ngIf="!template.isCustom">Default</span>
+              <button type="button" class="secondary-btn" (click)="toggleSupplierTemplateMinimized(template.id)">
+                {{ isSupplierTemplateMinimized(template.id) ? 'Expand' : 'Minimise' }}
+              </button>
+              <button type="button" class="remove-btn" (click)="removeSupplierTemplate(template.id)">Remove</button>
+            </div>
+          </div>
+
+          <div class="config-grid" *ngIf="!isSupplierTemplateMinimized(template.id)">
+            <label>
+              <span>Name</span>
+              <input type="text" [(ngModel)]="template.name" />
+            </label>
+            <label>
+              <span>Subject</span>
+              <input type="text" [(ngModel)]="template.subject" />
+            </label>
+          </div>
+
+          <label class="config-textarea" *ngIf="!isSupplierTemplateMinimized(template.id)">
+            <span>Body</span>
+            <textarea rows="4" [(ngModel)]="template.body"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="config-actions">
+        <button type="button" class="secondary-btn" (click)="resetSupplierTemplates()">Reset</button>
+        <button type="button" class="primary-btn" (click)="saveSupplierTemplates()">Save Supplier Templates</button>
+      </div>
+
+      <p class="config-message" *ngIf="supplierTemplatesSavedMessage">{{ supplierTemplatesSavedMessage }}</p>
+    </div>
+
+    <div class="settings-card">
+      <div class="settings-card-header">
+        <div>
+          <h4>Supplier API</h4>
+          <p>Configure supplier endpoint access, tokens, keys, and account credentials.</p>
+        </div>
+        <button type="button" class="secondary-btn add-btn" (click)="addSupplierApiConfiguration()">Add Supplier API</button>
+      </div>
+
+      <div class="api-config-list">
+        <div class="api-config-card" *ngFor="let config of supplierApiConfigs; let i = index">
+          <div class="api-config-header">
+            <h5>{{ config.name || ('Supplier API ' + (i + 1)) }}</h5>
+            <button type="button" class="remove-btn" [disabled]="supplierApiConfigs.length === 1" (click)="removeSupplierApiConfiguration(config.id)">Remove</button>
+          </div>
+
+          <div class="config-grid">
+            <label>
+              <span>Name</span>
+              <input type="text" [(ngModel)]="config.name" />
+            </label>
+            <label>
+              <span>Base URL</span>
+              <input type="text" [(ngModel)]="config.baseUrl" />
+            </label>
+            <label>
+              <span>Auth type</span>
+              <select [(ngModel)]="config.authType">
+                <option value="Bearer Token">Bearer Token</option>
+                <option value="API Key">API Key</option>
+                <option value="Basic Auth">Basic Auth</option>
+              </select>
+            </label>
+            <label>
+              <span>Token</span>
+              <input type="password" [(ngModel)]="config.token" />
+            </label>
+            <label>
+              <span>API key</span>
+              <input type="password" [(ngModel)]="config.apiKey" />
+            </label>
+            <label>
+              <span>API secret</span>
+              <input type="password" [(ngModel)]="config.apiSecret" />
+            </label>
+            <label>
+              <span>Username</span>
+              <input type="text" [(ngModel)]="config.username" />
+            </label>
+            <label>
+              <span>Password</span>
+              <input type="password" [(ngModel)]="config.password" />
+            </label>
+            <label>
+              <span>Account reference</span>
+              <input type="text" [(ngModel)]="config.accountReference" />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="config-actions">
+        <button type="button" class="secondary-btn" (click)="resetSupplierApiConfigurations()">Reset</button>
+        <button type="button" class="primary-btn" (click)="saveSupplierApiConfigurations()">Save Supplier API Configs</button>
+      </div>
+
+      <p class="config-message" *ngIf="supplierApiConfigSavedMessage">{{ supplierApiConfigSavedMessage }}</p>
+    </div>
+
+    <div class="settings-card">
+      <div class="settings-card-header">
+        <div>
+          <h4>Courier API</h4>
+          <p>Configure courier endpoint access, keys, tokens, and account credentials.</p>
+        </div>
+        <button type="button" class="secondary-btn add-btn" (click)="addCourierApiConfiguration()">Add Courier API</button>
+      </div>
+
+      <div class="api-config-list">
+        <div class="api-config-card" *ngFor="let config of courierApiConfigs; let i = index">
+          <div class="api-config-header">
+            <h5>{{ config.name || ('Courier API ' + (i + 1)) }}</h5>
+            <button type="button" class="remove-btn" [disabled]="courierApiConfigs.length === 1" (click)="removeCourierApiConfiguration(config.id)">Remove</button>
+          </div>
+
+          <div class="config-grid">
+            <label>
+              <span>Name</span>
+              <input type="text" [(ngModel)]="config.name" />
+            </label>
+            <label>
+              <span>Base URL</span>
+              <input type="text" [(ngModel)]="config.baseUrl" />
+            </label>
+            <label>
+              <span>Auth type</span>
+              <select [(ngModel)]="config.authType">
+                <option value="Bearer Token">Bearer Token</option>
+                <option value="API Key">API Key</option>
+                <option value="Basic Auth">Basic Auth</option>
+              </select>
+            </label>
+            <label>
+              <span>Token</span>
+              <input type="password" [(ngModel)]="config.token" />
+            </label>
+            <label>
+              <span>API key</span>
+              <input type="password" [(ngModel)]="config.apiKey" />
+            </label>
+            <label>
+              <span>API secret</span>
+              <input type="password" [(ngModel)]="config.apiSecret" />
+            </label>
+            <label>
+              <span>Username</span>
+              <input type="text" [(ngModel)]="config.username" />
+            </label>
+            <label>
+              <span>Password</span>
+              <input type="password" [(ngModel)]="config.password" />
+            </label>
+            <label>
+              <span>Account reference</span>
+              <input type="text" [(ngModel)]="config.accountReference" />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="config-actions">
+        <button type="button" class="secondary-btn" (click)="resetCourierApiConfigurations()">Reset</button>
+        <button type="button" class="primary-btn" (click)="saveCourierApiConfigurations()">Save Courier API Configs</button>
+      </div>
+
+      <p class="config-message" *ngIf="courierApiConfigSavedMessage">{{ courierApiConfigSavedMessage }}</p>
+    </div>
+  </div>
+</div>

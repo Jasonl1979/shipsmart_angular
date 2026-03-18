@@ -5,7 +5,6 @@
   </div>
 
   <div class="action-row">
-    <button class="secondary-btn" (click)="back()">Back</button>
     <button class="primary-btn" (click)="createRequest()">Create New Fulfilment Request</button>
   </div>
 
@@ -62,7 +61,7 @@
             <td>{{ item.id }}</td>
             <td>{{ formatDate(item.createdAt) }}</td>
             <td>
-              <span class="status-badge">{{ item.status }}</span>
+              <span class="status-badge" [class.completed]="item.status === 'Completed'">{{ item.status }}</span>
             </td>
             <td>{{ countByEmailStatus(item, 'Draft') }}</td>
             <td>{{ countByEmailStatus(item, 'Sent') }}</td>

@@ -1,0 +1,213 @@
+.manage-config-container {
+  max-width: 960px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 30px;
+  border: 1px solid var(--border-color);
+
+  h2 {
+    margin-top: 0;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+  }
+}
+
+.config-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.api-config-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.api-config-card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--bg-secondary);
+}
+
+.template-card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--bg-secondary);
+}
+
+.api-config-header,
+.template-header,
+.settings-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.api-config-header,
+.template-header {
+  margin-bottom: 12px;
+
+  h5 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+}
+
+.settings-card {
+  padding: 18px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.settings-card-header {
+  margin-bottom: 16px;
+
+  h4 {
+    margin: 0 0 6px;
+    color: var(--text-primary);
+    font-size: 15px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+}
+
+.add-btn,
+.remove-btn {
+  white-space: nowrap;
+}
+
+.remove-btn {
+  border: 1px solid var(--border-color);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  padding: 0.45rem 0.8rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--text-primary);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.template-badge {
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+}
+
+.template-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.config-grid label,
+.config-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  span {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+}
+
+.config-textarea {
+  margin-top: 14px;
+}
+
+.config-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.config-message {
+  margin: 12px 0 0;
+  color: var(--text-secondary);
+}
+
+input,
+textarea,
+select {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: 0;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+}
+
+.primary-btn {
+  background: var(--status-info);
+  color: #fff;
+}
+
+.secondary-btn {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .manage-config-container {
+    padding: 1rem;
+  }
+
+  .api-config-header,
+  .settings-card-header {
+    flex-direction: column;
+  }
+
+  .config-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .config-actions {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+}

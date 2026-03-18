@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { FulfilmentService, FulfilmentRequest, FulfilmentStatus } from '../../services/fulfilment';
 
 @Component({
@@ -27,8 +26,7 @@ export class FulfilmentHistoryComponent {
 
   constructor(
     public fulfilmentService: FulfilmentService,
-    private router: Router,
-    private location: Location
+    private router: Router
   ) {}
 
   get history(): FulfilmentRequest[] {
@@ -82,10 +80,6 @@ export class FulfilmentHistoryComponent {
   openHistory(event: Event, requestId: string): void {
     event.preventDefault();
     this.router.navigate(['/fulfilment/history', requestId]);
-  }
-
-  back(): void {
-    this.location.back();
   }
 
   countByEmailStatus(item: FulfilmentRequest, status: 'Draft' | 'Sent'): number {

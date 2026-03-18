@@ -77,6 +77,11 @@ export class HeaderComponent {
     this.router.navigate(['/manage-package']);
   }
 
+  openManageConfig(): void {
+    this.showSettingsMenu = false;
+    this.router.navigate(['/manage-config']);
+  }
+
   openEditCompanyDetails(): void {
     if (this.isAccessRestricted) {
       return;

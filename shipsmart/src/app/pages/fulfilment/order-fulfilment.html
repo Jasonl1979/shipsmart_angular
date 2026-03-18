@@ -39,7 +39,7 @@
     <div class="field-group" *ngIf="!useExistingOrder">
       <label for="newOrderNumber">New order number</label>
       <input id="newOrderNumber" type="text" [(ngModel)]="newOrderNumber" placeholder="e.g. ORD-2026-210" />
-      <p class="note">Next opens New order where products can be selected from your product list or added as custom products.</p>
+      <p class="note">Next opens Customer, then New order where products can be selected from your product list or added as custom products.</p>
     </div>
 
     <div class="field-group" *ngIf="addedExistingProducts.length || addedCustomProducts.length">

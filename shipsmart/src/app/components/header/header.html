@@ -64,6 +64,9 @@
           <button class="menu-item" (click)="openEditCompanyDetails()">🏢 Manage Company</button>
         </ng-container>
         <ng-container *ngIf="isAdmin && !isAccessRestricted">
+          <button class="menu-item" (click)="openManageConfig()">🛠️ Manage config</button>
+        </ng-container>
+        <ng-container *ngIf="isAdmin && !isAccessRestricted">
           <button class="menu-item" (click)="openManagePackage()">📦 Manage Package</button>
         </ng-container>
         <button class="menu-item disabled">📄 Export Data (Future)</button>
